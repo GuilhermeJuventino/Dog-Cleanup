@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhkpq8ub4ydgj"]
+
+[ext_resource type="Script" path="res://player/body.gd" id="1_mj7v7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gguee"]
+size = Vector2(40, 40)
+
+[node name="Player" type="Node2D"]
+position = Vector2(-20, -20)
+
+[node name="Body" type="CharacterBody2D" parent="."]
+collision_mask = 0
+script = ExtResource("1_mj7v7")
+
+[node name="Texture" type="ColorRect" parent="Body"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 0.705882, 0.478431, 1)
+
+[node name="Collision" type="CollisionShape2D" parent="Body"]
+visible = false
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_gguee")
