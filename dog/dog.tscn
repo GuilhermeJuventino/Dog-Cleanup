@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4r2un1415tvy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nnrs"]
+size = Vector2(40, 40)
+
+[node name="Dog" type="Node2D"]
+position = Vector2(-20, -20)
+
+[node name="Body" type="CharacterBody2D" parent="."]
+collision_layer = 2
+collision_mask = 16385
+
+[node name="ColorRect" type="ColorRect" parent="Body"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.921569, 0.270588, 0.247059, 1)
+
+[node name="Collision" type="CollisionShape2D" parent="Body"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_7nnrs")
