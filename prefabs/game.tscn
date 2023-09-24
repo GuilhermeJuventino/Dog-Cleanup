@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://eecaou1la4r0"]
 
-[ext_resource type="PackedScene" uid="uid://dhkpq8ub4ydgj" path="res://player/player.tscn" id="1_81pbg"]
+[ext_resource type="PackedScene" uid="uid://clm0n1j2ufe5m" path="res://player/player.tscn" id="1_81pbg"]
 [ext_resource type="PackedScene" uid="uid://b4r2un1415tvy" path="res://dog/dog.tscn" id="2_x1pnv"]
 
 [node name="Game" type="Node2D"]

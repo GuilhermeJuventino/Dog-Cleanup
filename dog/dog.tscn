@@ -1,4 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4r2un1415tvy"]
+[gd_scene load_steps=5 format=3 uid="uid://b4r2un1415tvy"]
+
+[ext_resource type="Script" path="res://dog/dog.gd" id="1_p00a8"]
+[ext_resource type="Script" path="res://states/state_machine.gd" id="2_wmhcd"]
+[ext_resource type="Script" path="res://states/dog_idle.gd" id="3_7vorx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nnrs"]
 size = Vector2(40, 40)
@@ -9,6 +13,7 @@ position = Vector2(-20, -20)
 [node name="Body" type="CharacterBody2D" parent="."]
 collision_layer = 2
 collision_mask = 16385
+script = ExtResource("1_p00a8")
 
 [node name="ColorRect" type="ColorRect" parent="Body"]
 offset_right = 40.0
@@ -18,3 +23,11 @@ color = Color(0.921569, 0.270588, 0.247059, 1)
 [node name="Collision" type="CollisionShape2D" parent="Body"]
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_7nnrs")
+
+[node name="StateMachine" type="Node" parent="Body" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_wmhcd")
+initial_state = NodePath("DogIdle")
+
+[node name="DogIdle" type="Node" parent="Body/StateMachine" node_paths=PackedStringArray("dog")]
+script = ExtResource("3_7vorx")
+dog = NodePath("../..")
