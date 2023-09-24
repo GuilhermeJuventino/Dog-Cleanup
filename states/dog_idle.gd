@@ -1,25 +1,24 @@
+# Dog idle state class
 extends State
 class_name DogIdle
 
 @export var dog: CharacterBody2D
-@export var move_speed := 70.0
 
-var move_direction: Vector2
-var wander_time: float
+var wait_time: float
 
-func randomize_wander():
-	move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
-	wander_time = randf_range(1, 3)
+func randomize_wait():
+	wait_time = randf_range(1, 3)
 
 func enter():
-	randomize_wander()
+	randomize_wait()
 
 func update(delta: float):
-	if wander_time > 0:
-		wander_time -= delta
+	if wait_time > 0:
+		wait_time -= delta
 	else:
-		randomize_wander()
+		Transitioned.emit(self, "DogWander")
 
 func physics_update(_delta: float):
 	if dog:
-		dog.velocity = move_direction * move_speed
+		dog.velocity.x = 0
+		dog.velocity.y = 0

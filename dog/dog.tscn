@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4r2un1415tvy"]
+[gd_scene load_steps=6 format=3 uid="uid://b4r2un1415tvy"]
 
 [ext_resource type="Script" path="res://dog/dog.gd" id="1_p00a8"]
 [ext_resource type="Script" path="res://states/state_machine.gd" id="2_wmhcd"]
 [ext_resource type="Script" path="res://states/dog_idle.gd" id="3_7vorx"]
+[ext_resource type="Script" path="res://states/dog_wander.gd" id="3_tb0c6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nnrs"]
 size = Vector2(40, 40)
@@ -13,6 +14,7 @@ position = Vector2(-20, -20)
 [node name="Body" type="CharacterBody2D" parent="."]
 collision_layer = 2
 collision_mask = 16385
+motion_mode = 1
 script = ExtResource("1_p00a8")
 
 [node name="ColorRect" type="ColorRect" parent="Body"]
@@ -26,7 +28,11 @@ shape = SubResource("RectangleShape2D_7nnrs")
 
 [node name="StateMachine" type="Node" parent="Body" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_wmhcd")
-initial_state = NodePath("DogIdle")
+initial_state = NodePath("DogWander")
+
+[node name="DogWander" type="Node" parent="Body/StateMachine" node_paths=PackedStringArray("dog")]
+script = ExtResource("3_tb0c6")
+dog = NodePath("../..")
 
 [node name="DogIdle" type="Node" parent="Body/StateMachine" node_paths=PackedStringArray("dog")]
 script = ExtResource("3_7vorx")

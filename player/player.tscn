@@ -10,6 +10,7 @@ position = Vector2(-20, -20)
 
 [node name="Body" type="CharacterBody2D" parent="."]
 collision_mask = 16386
+motion_mode = 1
 script = ExtResource("1_2644f")
 
 [node name="Texture" type="ColorRect" parent="Body"]
