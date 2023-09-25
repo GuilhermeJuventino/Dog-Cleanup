@@ -1,4 +1,5 @@
 extends State
+# Player move state class
 class_name PlayerMove
 
 @export var player: CharacterBody2D

@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://eecaou1la4r0"]
+[gd_scene load_steps=5 format=3 uid="uid://eecaou1la4r0"]
 
 [ext_resource type="PackedScene" uid="uid://clm0n1j2ufe5m" path="res://player/player.tscn" id="1_81pbg"]
 [ext_resource type="PackedScene" uid="uid://b4r2un1415tvy" path="res://dog/dog.tscn" id="2_x1pnv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4j1c"]
+size = Vector2(1152, 232)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twsgb"]
+size = Vector2(245, 655)
 
 [node name="Game" type="Node2D"]
 
@@ -18,3 +24,43 @@ position = Vector2(560, 312)
 
 [node name="Dog" parent="." instance=ExtResource("2_x1pnv")]
 position = Vector2(824, 136)
+
+[node name="TopLimit" type="StaticBody2D" parent="."]
+position = Vector2(0, -232)
+collision_layer = 16384
+collision_mask = 3
+
+[node name="LimitCollision" type="CollisionShape2D" parent="TopLimit"]
+position = Vector2(576, 116)
+shape = SubResource("RectangleShape2D_v4j1c")
+debug_color = Color(0.952941, 0.196078, 0.247059, 0.419608)
+
+[node name="BottomLimit" type="StaticBody2D" parent="."]
+position = Vector2(0, 654)
+collision_layer = 16384
+collision_mask = 3
+
+[node name="LimitCollision" type="CollisionShape2D" parent="BottomLimit"]
+position = Vector2(576, 116)
+shape = SubResource("RectangleShape2D_v4j1c")
+debug_color = Color(0.952941, 0.196078, 0.247059, 0.419608)
+
+[node name="LeftLimit" type="StaticBody2D" parent="."]
+position = Vector2(-248, -1)
+collision_layer = 16384
+collision_mask = 3
+
+[node name="LimitCollision" type="CollisionShape2D" parent="LeftLimit"]
+position = Vector2(125, 329)
+shape = SubResource("RectangleShape2D_twsgb")
+debug_color = Color(0.952941, 0.196078, 0.247059, 0.419608)
+
+[node name="RightLimit" type="StaticBody2D" parent="."]
+position = Vector2(1149, -2)
+collision_layer = 16384
+collision_mask = 3
+
+[node name="LimitCollision" type="CollisionShape2D" parent="RightLimit"]
+position = Vector2(125, 329)
+shape = SubResource("RectangleShape2D_twsgb")
+debug_color = Color(0.952941, 0.196078, 0.247059, 0.419608)
