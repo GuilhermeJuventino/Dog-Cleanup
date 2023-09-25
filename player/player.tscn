@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://clm0n1j2ufe5m"]
+[gd_scene load_steps=6 format=3 uid="uid://clm0n1j2ufe5m"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_2644f"]
+[ext_resource type="Script" path="res://states/state_machine.gd" id="2_u8kd4"]
+[ext_resource type="Script" path="res://states/player_idle.gd" id="3_tyry2"]
+[ext_resource type="Script" path="res://states/player_move.gd" id="4_myrak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gguee"]
 size = Vector2(40, 40)
@@ -21,3 +24,15 @@ color = Color(1, 0.705882, 0.478431, 1)
 [node name="Collision" type="CollisionShape2D" parent="Body"]
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_gguee")
+
+[node name="StateMachine" type="Node" parent="Body" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_u8kd4")
+initial_state = NodePath("PlayerIdle")
+
+[node name="PlayerIdle" type="Node" parent="Body/StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("3_tyry2")
+player = NodePath("../..")
+
+[node name="PlayerMove" type="Node" parent="Body/StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("4_myrak")
+player = NodePath("../..")
